@@ -405,6 +405,112 @@ function Upload({ tenantId }) {
   );
 }
 
+// ── Welcome Dashboard ───────────────────────────────────────────────────────
+function WelcomeDashboard({ tenants, dbLoading }) {
+  return (
+    <div className="welcome-dashboard">
+      <div className="card welcome-banner" style={{ background: 'linear-gradient(135deg, rgba(74,222,128,0.1) 0%, rgba(17,26,21,0.8) 100%)', border: '1px solid var(--accent)', padding: '32px', marginBottom: '24px', position: 'relative', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', right: '-40px', bottom: '-40px', opacity: 0.15 }}>
+          <Leaf size={200} color="var(--accent)" />
+        </div>
+        <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '4px 12px', background: 'rgba(74,222,128,0.15)', borderRadius: '20px', color: 'var(--accent)', fontSize: '11px', fontWeight: 'bold', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '1px' }}>
+          <Zap size={12} /> Live Environment Connected
+        </div>
+        <h2 style={{ fontSize: '28px', fontWeight: '800', marginBottom: '12px', color: 'var(--text)' }}>
+          Welcome to BreatheESG Carbon Intelligence Portal
+        </h2>
+        <p style={{ fontSize: '14px', color: 'var(--text2)', maxWidth: '640px', lineHeight: '1.6' }}>
+          This enterprise-grade prototype is configured for automated carbon data ingestion, auditing, and review. Underneath, it maps data using the GHG Protocol compliant DEFRA 2023 factor set.
+        </p>
+      </div>
+
+      <div className="grid-2">
+        <div className="card">
+          <div className="card-title">Getting Started Guide</div>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginTop: '12px' }}>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: '700', fontSize: '12px' }}>1</div>
+              <div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '2px' }}>Select Client Tenant</div>
+                <p style={{ fontSize: '12px', color: 'var(--text2)', lineHeight: '1.4' }}>Click the "Client Tenant" dropdown in the bottom-left of the sidebar to choose an enterprise client profile.</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: '700', fontSize: '12px' }}>2</div>
+              <div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '2px' }}>Explore Emissions & Analytics</div>
+                <p style={{ fontSize: '12px', color: 'var(--text2)', lineHeight: '1.4' }}>Navigate to the **Dashboard** or **Review Records** tabs to audit pre-seeded transactional carbon records.</p>
+              </div>
+            </div>
+            <div style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+              <div style={{ width: '24px', height: '24px', borderRadius: '50%', background: 'var(--surface2)', border: '1px solid var(--border)', color: 'var(--accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, fontWeight: '700', fontSize: '12px' }}>3</div>
+              <div>
+                <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '2px' }}>Ingest Custom Data</div>
+                <p style={{ fontSize: '12px', color: 'var(--text2)', lineHeight: '1.4' }}>Upload CSV files from the `sample_data/` directory in the **Upload Data** tab to test our multi-source parsers.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="card-title">Database & Connection Status</div>
+          {dbLoading ? (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', marginTop: '16px', alignItems: 'center', padding: '20px 0' }}>
+              <div className="spinner" style={{ border: '2px solid var(--border)', borderTop: '2px solid var(--accent)', borderRadius: '50%', width: '32px', height: '32px' }} />
+              <div style={{ fontSize: '12px', color: 'var(--text2)', marginTop: '8px' }}>Seeding Database & Connecting to API...</div>
+            </div>
+          ) : (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '12px' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
+                <span style={{ color: 'var(--text2)', fontSize: '13px' }}>Backend API Status</span>
+                <span className="mono" style={{ fontSize: '12px', color: 'var(--accent)' }}>Connected (http://localhost:8000)</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
+                <span style={{ color: 'var(--text2)', fontSize: '13px' }}>Available Client Profiles</span>
+                <span style={{ fontSize: '13px', fontWeight: 'bold' }}>{tenants.length} profiles loaded</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid var(--border)', paddingBottom: '8px' }}>
+                <span style={{ color: 'var(--text2)', fontSize: '13px' }}>Default Credentials</span>
+                <span style={{ fontSize: '12px', color: 'var(--text)' }}>admin / admin123 (or analyst)</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ color: 'var(--text2)', fontSize: '13px' }}>GHG Scope Parsing</span>
+                <span style={{ fontSize: '12px', color: 'var(--accent)' }}>Scope 1 (SAP), Scope 2 (Utility), Scope 3 (Travel)</span>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div className="card" style={{ marginTop: '24px' }}>
+        <div className="card-title">Supported Enterprise Data Formats</div>
+        <div className="grid-4" style={{ marginTop: '16px', marginBottom: 0 }}>
+          <div style={{ background: 'var(--surface2)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+            <div style={{ color: 'var(--scope1)', fontWeight: 'bold', fontSize: '11px', textTransform: 'uppercase', marginBottom: '8px' }}>Scope 1</div>
+            <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>SAP Procurement</div>
+            <p style={{ fontSize: '11px', color: 'var(--text2)', lineHeight: '1.4' }}>Fuel purchases with automated unit conversions (L/GAL/M3) and anomaly flags.</p>
+          </div>
+          <div style={{ background: 'var(--surface2)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+            <div style={{ color: 'var(--scope2)', fontWeight: 'bold', fontSize: '11px', textTransform: 'uppercase', marginBottom: '8px' }}>Scope 2</div>
+            <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Utility Portals</div>
+            <p style={{ fontSize: '11px', color: 'var(--text2)', lineHeight: '1.4' }}>Green Button electricity files with estimated read alerts and consumption tracking.</p>
+          </div>
+          <div style={{ background: 'var(--surface2)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+            <div style={{ color: 'var(--scope3)', fontWeight: 'bold', fontSize: '11px', textTransform: 'uppercase', marginBottom: '8px' }}>Scope 3</div>
+            <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Corporate Travel</div>
+            <p style={{ fontSize: '11px', color: 'var(--text2)', lineHeight: '1.4' }}>Navan passenger flight distance, nights, hotel, and transit emission factor mapping.</p>
+          </div>
+          <div style={{ background: 'var(--surface2)', padding: '16px', borderRadius: '8px', border: '1px solid var(--border)' }}>
+            <div style={{ color: 'var(--accent)', fontWeight: 'bold', fontSize: '11px', textTransform: 'uppercase', marginBottom: '8px' }}>Verification</div>
+            <div style={{ fontWeight: '700', fontSize: '13px', marginBottom: '4px' }}>Immutable Logs</div>
+            <p style={{ fontSize: '11px', color: 'var(--text2)', lineHeight: '1.4' }}>Every approval, locking action, and dispute logs a snapshot of state for audit reports.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── App Shell ──────────────────────────────────────────────────────────────
 export default function App() {
   const [page, setPage] = useState('dashboard');
@@ -458,12 +564,18 @@ export default function App() {
 
       <main className="main">
         <div className="page-header">
-          <div className="page-title">{title}</div>
-          <div className="page-sub">{sub}</div>
+          <div className="page-title">{tenantId ? title : 'BreatheESG Intelligence'}</div>
+          <div className="page-sub">{tenantId ? sub : 'Enterprise Carbon Data Ingestion & Review Platform'}</div>
         </div>
-        {page === 'dashboard' && <Dashboard tenantId={tenantId}/>}
-        {page === 'review' && <ReviewTable tenantId={tenantId}/>}
-        {page === 'upload' && <Upload tenantId={tenantId}/>}
+        {!tenantId ? (
+          <WelcomeDashboard tenants={tenants} dbLoading={tenants.length === 0} />
+        ) : (
+          <>
+            {page === 'dashboard' && <Dashboard tenantId={tenantId}/>}
+            {page === 'review' && <ReviewTable tenantId={tenantId}/>}
+            {page === 'upload' && <Upload tenantId={tenantId}/>}
+          </>
+        )}
       </main>
     </div>
   );
