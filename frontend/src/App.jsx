@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import './App.css';
 import {
-  LayoutDashboard, Upload, Table2, Lock, AlertTriangle, CheckCircle,
+  LayoutDashboard, Upload as UploadIcon, Table2, Lock, AlertTriangle, CheckCircle,
   X, ChevronRight, Zap, Car, Plane, Leaf
 } from 'lucide-react';
 import {
@@ -363,7 +363,7 @@ function Upload({ tenantId }) {
         onDrop={onDrop}
         onClick={() => document.getElementById('file-input').click()}
       >
-        <div className="upload-icon"><Upload size={32}/></div>
+        <div className="upload-icon"><UploadIcon size={32}/></div>
         <div className="upload-title">{loading ? 'Processing…' : 'Drop CSV file here or click to browse'}</div>
         <div className="upload-sub">Uploading as: <strong style={{color:'var(--accent)'}}>{sourceInfo[source].title}</strong></div>
         <input id="file-input" type="file" accept=".csv" style={{ display: 'none' }}
@@ -422,7 +422,7 @@ export default function App() {
   const nav = [
     { id: 'dashboard', label: 'Dashboard', icon: <LayoutDashboard size={15}/> },
     { id: 'review', label: 'Review Records', icon: <Table2 size={15}/> },
-    { id: 'upload', label: 'Upload Data', icon: <Upload size={15}/> },
+    { id: 'upload', label: 'Upload Data', icon: <UploadIcon size={15}/> },
   ];
 
   const pageTitles = {
