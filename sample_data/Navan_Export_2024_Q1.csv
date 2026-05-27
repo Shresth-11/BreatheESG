@@ -1,0 +1,8 @@
+trip_id,traveler_name,trip_type,origin,destination,departure_date,distance_km,nights,transport_mode,cost_usd
+TRP-2024-001,Sarah Chen,flight,LHR,JFK,2024-01-08,6730,,, 1240.00
+TRP-2024-001-H,Sarah Chen,hotel,New York,New York,2024-01-08,,3,,680.00
+TRP-2024-002,Raj Patel,flight,LHR,CDG,2024-02-14,,,, 320.00
+TRP-2024-003,Priya Sharma,ground,Heathrow,London City,2024-03-05,45,,taxi,85.00
+TRP-2024-004,James Wilson,flight,LHR,BOM,2024-03-12,7191,,,1890.00
+TRP-2024-004-H,James Wilson,hotel,Mumbai,Mumbai,2024-03-12,,5,,1200.00
+TRP-2024-005,Sarah Chen,ground,Paris CDG,Paris Centre,2024-02-14,35,,bus,18.00

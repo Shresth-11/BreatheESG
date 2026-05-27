@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.env
+*.egg-info/
+db.sqlite3
+staticfiles/
+media/
+
+# Node
+node_modules/
+frontend/build/
+.env.local
+.env.production
+
+# OS
+.DS_Store
+*.swp
