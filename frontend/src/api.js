@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-let BASE = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+let BASE = process.env.REACT_APP_API_URL || 'https://breathe-esg-api-naso.onrender.com/api';
 if (BASE && !BASE.endsWith('/api') && !BASE.endsWith('/api/')) {
   BASE = BASE.replace(/\/$/, '') + '/api';
 }
