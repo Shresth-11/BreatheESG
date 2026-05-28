@@ -564,11 +564,37 @@ export default function App() {
 
       <main className="main">
         <div className="page-header">
-          <div className="page-title">{tenantId ? title : 'BreatheESG Intelligence'}</div>
-          <div className="page-sub">{tenantId ? sub : 'Enterprise Carbon Data Ingestion & Review Platform'}</div>
+          <div className="page-title">{title}</div>
+          <div className="page-sub">{sub}</div>
         </div>
         {!tenantId ? (
-          <WelcomeDashboard tenants={tenants} dbLoading={tenants.length === 0} />
+          <>
+            {page === 'dashboard' && <WelcomeDashboard tenants={tenants} dbLoading={tenants.length === 0} />}
+            {page === 'review' && (
+              <div className="card welcome-dashboard" style={{ textAlign: 'center', padding: '60px 20px' }}>
+                <Table2 size={48} style={{ color: 'var(--muted)', marginBottom: '16px', opacity: 0.5 }} />
+                <h3 style={{ fontWeight: '700', fontSize: '18px', marginBottom: '8px' }}>Select Client Tenant to Review Records</h3>
+                <p style={{ color: 'var(--text2)', fontSize: '13px', maxWidth: '400px', margin: '0 auto 20px', lineHeight: '1.5' }}>
+                  Once your backend database connection is live, select a Client Tenant from the dropdown in the bottom-left sidebar to view and audit carbon transactions.
+                </p>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'var(--surface2)', borderRadius: '20px', fontSize: '11px', color: 'var(--accent)', border: '1px solid var(--border)' }}>
+                  <span className="spinner" style={{ border: '1px solid transparent', borderTop: '1px solid var(--accent)', borderRadius: '50%', width: '10px', height: '10px' }} /> Seeding Database...
+                </div>
+              </div>
+            )}
+            {page === 'upload' && (
+              <div className="card welcome-dashboard" style={{ textAlign: 'center', padding: '60px 20px' }}>
+                <UploadIcon size={48} style={{ color: 'var(--muted)', marginBottom: '16px', opacity: 0.5 }} />
+                <h3 style={{ fontWeight: '700', fontSize: '18px', marginBottom: '8px' }}>Select Client Tenant to Ingest Data</h3>
+                <p style={{ color: 'var(--text2)', fontSize: '13px', maxWidth: '400px', margin: '0 auto 20px', lineHeight: '1.5' }}>
+                  Please select a Client Tenant from the bottom-left dropdown to enable automated data ingestion for SAP, utility bills, or corporate travel logs.
+                </p>
+                <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '6px 12px', background: 'var(--surface2)', borderRadius: '20px', fontSize: '11px', color: 'var(--accent)', border: '1px solid var(--border)' }}>
+                  <span className="spinner" style={{ border: '1px solid transparent', borderTop: '1px solid var(--accent)', borderRadius: '50%', width: '10px', height: '10px' }} /> Connecting to API...
+                </div>
+              </div>
+            )}
+          </>
         ) : (
           <>
             {page === 'dashboard' && <Dashboard tenantId={tenantId}/>}
