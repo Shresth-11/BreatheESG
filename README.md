@@ -2,7 +2,7 @@
 
 A Django REST + React prototype for ingesting, normalizing, and reviewing emissions data from three enterprise source types: SAP fuel/procurement exports, utility portal CSVs, and corporate travel platform exports.
 
-**Live demo:** `[your-render-url]`  
+**Live demo:** https://breatheesg-20a7.onrender.com  
 **Credentials:** `admin / admin123` (admin), `analyst / analyst123` (analyst)
 
 ---
